@@ -1,166 +1,483 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Google Диск: все файлы в одном месте (учебный проект)</title>
+
 <meta name="description" content="Учебный сайт-визитка для курса по Performance-аналитике. Не является официальным сайтом Google.">
 
-<!-- Google Analytics 4 (Measurement ID G-KTTL093KVT) -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PZTBZH6F"></script>
+<!-- Google Tag Manager -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+(function(w,d,s,l,i){
+w[l]=w[l]||[];
+w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),
+dl=l!='dataLayer'?'&l='+l:'';
+j.async=true;
+j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KBPQ795R');
 </script>
+<!-- End Google Tag Manager -->
 
-<!-- Yandex.Metrika counter -->
+<!-- Yandex.Metrika -->
 <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114267184', 'ym');
+(function(m,e,t,r,i,k,a){
+m[i]=m[i]||function(){
+(m[i].a=m[i].a||[]).push(arguments)
+};
+m[i].l=1*new Date();
 
-    ym(114267184, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+for(var j=0;j<document.scripts.length;j++){
+if(document.scripts[j].src===r){return;}
+}
+
+k=e.createElement(t),
+a=e.getElementsByTagName(t)[0],
+k.async=1,
+k.src=r,
+a.parentNode.insertBefore(k,a);
+
+})(window,document,'script',
+'https://mc.yandex.ru/metrika/tag.js?id=114267184',
+'ym');
+
+ym(114267184,'init',{
+ssr:true,
+webvisor:true,
+clickmap:true,
+ecommerce:"dataLayer",
+referrer:document.referrer,
+url:location.href,
+accurateTrackBounce:true,
+trackLinks:true
+});
 </script>
-<!-- /Yandex.Metrika counter -->
+<!-- End Yandex.Metrika -->
 
 <style>
-  :root { --blue:#1a73e8; --green:#34a853; --yellow:#fbbc04; --red:#ea4335; --text:#202124; --muted:#5f6368; --bg:#f8f9fa; --card:#ffffff; --line:#dadce0; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: Arial, Helvetica, sans-serif; color:var(--text); background:var(--bg); line-height:1.5; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
-  header { background:#fff; border-bottom:1px solid var(--line); }
-  header .wrap { display:flex; align-items:center; justify-content:space-between; height:64px; }
-  .brand { font-weight:700; font-size:20px; }
-  .btn { display:inline-block; background:var(--blue); color:#fff; text-decoration:none; border:0; border-radius:999px; padding:14px 28px; font-size:16px; font-weight:700; cursor:pointer; }
-  .btn:hover { background:#1558b0; }
-  .btn.ghost { background:#fff; color:var(--blue); border:2px solid var(--blue); }
-  .hero { padding: 72px 0 56px; }
-  .hero h1 { font-size: clamp(32px, 6vw, 52px); line-height:1.1; margin:0 0 16px; }
-  .hero h1 span { color:var(--blue); }
-  .hero p { font-size:20px; color:var(--muted); max-width:560px; margin:0 0 28px; }
-  .hero .actions { display:flex; gap:12px; flex-wrap:wrap; }
-  section { padding: 48px 0; }
-  h2 { font-size:30px; margin:0 0 24px; }
-  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:24px; }
-  .card h3 { margin:0 0 8px; font-size:20px; }
-  .card p { margin:0; color:var(--muted); }
-  .num { display:inline-flex; width:40px; height:40px; border-radius:50%; align-items:center; justify-content:center; color:#fff; font-weight:700; margin-bottom:12px; }
-  form { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:28px; max-width:520px; }
-  label { display:block; font-weight:700; margin-bottom:8px; }
-  select { width:100%; padding:12px; font-size:16px; border:1px solid var(--line); border-radius:8px; margin-bottom:20px; background:#fff; }
-  #thanks { display:none; margin-top:16px; padding:16px; background:#e6f4ea; border-radius:12px; color:#137333; }
-  footer { padding:32px 0 48px; color:var(--muted); font-size:14px; border-top:1px solid var(--line); margin-top:32px; }
+:root {
+--blue:#1a73e8;
+--green:#34a853;
+--yellow:#fbbc04;
+--red:#ea4335;
+--text:#202124;
+--muted:#5f6368;
+--bg:#f8f9fa;
+--card:#ffffff;
+--line:#dadce0;
+}
+
+* { box-sizing:border-box; }
+
+body {
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+color:var(--text);
+background:var(--bg);
+line-height:1.5;
+}
+
+.wrap {
+max-width:960px;
+margin:0 auto;
+padding:0 20px;
+}
+
+header {
+background:#fff;
+border-bottom:1px solid var(--line);
+}
+
+header .wrap {
+display:flex;
+align-items:center;
+justify-content:space-between;
+height:64px;
+}
+
+.brand {
+font-weight:700;
+font-size:20px;
+}
+
+.btn {
+display:inline-block;
+background:var(--blue);
+color:#fff;
+text-decoration:none;
+border:0;
+border-radius:999px;
+padding:14px 28px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+}
+
+.btn:hover { background:#1558b0; }
+
+.btn.ghost {
+background:#fff;
+color:var(--blue);
+border:2px solid var(--blue);
+}
+
+.hero { padding:72px 0 56px; }
+
+.hero h1 {
+font-size:clamp(32px,6vw,52px);
+line-height:1.1;
+margin:0 0 16px;
+}
+
+.hero h1 span { color:var(--blue); }
+
+.hero p {
+font-size:20px;
+color:var(--muted);
+max-width:560px;
+margin:0 0 28px;
+}
+
+.hero .actions {
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+}
+
+section { padding:48px 0; }
+
+h2 {
+font-size:30px;
+margin:0 0 24px;
+}
+
+.grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:16px;
+}
+
+.card {
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+padding:24px;
+}
+
+.card h3 {
+margin:0 0 8px;
+font-size:20px;
+}
+
+.card p {
+margin:0;
+color:var(--muted);
+}
+
+.num {
+display:inline-flex;
+width:40px;
+height:40px;
+border-radius:50%;
+align-items:center;
+justify-content:center;
+color:#fff;
+font-weight:700;
+margin-bottom:12px;
+}
+
+form {
+background:var(--card);
+border:1px solid var(--line);
+border-radius:16px;
+padding:28px;
+max-width:520px;
+}
+
+label {
+display:block;
+font-weight:700;
+margin-bottom:8px;
+}
+
+select {
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid var(--line);
+border-radius:8px;
+margin-bottom:20px;
+background:#fff;
+}
+
+#thanks {
+display:none;
+margin-top:16px;
+padding:16px;
+background:#e6f4ea;
+border-radius:12px;
+color:#137333;
+}
+
+footer {
+padding:32px 0 48px;
+color:var(--muted);
+font-size:14px;
+border-top:1px solid var(--line);
+margin-top:32px;
+}
 </style>
 </head>
+
 <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBPQ795R"
+height="0" width="0"
+style="display:none;visibility:hidden">
+</iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <!-- Yandex.Metrika noscript -->
-<noscript><div><img src="https://mc.yandex.ru/watch/114267184" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika noscript -->
+<noscript>
+<div>
+<img src="https://mc.yandex.ru/watch/114267184"
+style="position:absolute;left:-9999px;"
+alt="">
+</div>
+</noscript>
+<!-- End Yandex.Metrika noscript -->
 
 <header>
-  <div class="wrap">
-    <div class="brand">Google Диск</div>
-    <a class="btn ghost" href="https://drive.google.com" target="_blank" rel="noopener" data-track="click_try" data-location="header">Попробовать</a>
-  </div>
+<div class="wrap">
+<div class="brand">Google Диск</div>
+
+<a class="btn ghost"
+href="https://drive.google.com"
+target="_blank"
+rel="noopener"
+data-track="click_try"
+data-location="header">
+Попробовать
+</a>
+</div>
 </header>
 
 <main>
-  <div class="wrap hero">
-    <h1>Все файлы <span>в одном месте</span></h1>
-    <p>До 15 ГБ бесплатно. Открывайте документы, фото и презентации с телефона, планшета и компьютера.</p>
-    <div class="actions">
-      <a class="btn" href="https://drive.google.com" target="_blank" rel="noopener" data-track="click_try" data-location="hero">Попробовать бесплатно</a>
-      <a class="btn ghost" href="#how">Как это работает</a>
-    </div>
-  </div>
 
-  <section>
-    <div class="wrap">
-      <h2>Три причины хранить файлы в облаке</h2>
-      <div class="grid">
-        <div class="card"><h3>Доступ с любого устройства</h3><p>Начните работу на ноутбуке, продолжите на телефоне. Файл всегда под рукой.</p></div>
-        <div class="card"><h3>Совместная работа</h3><p>Редактируйте документ вместе с другими и не пересылайте версии по почте.</p></div>
-        <div class="card"><h3>Надёжное хранение</h3><p>Файлы не потеряются вместе с флешкой или сломанным ноутбуком.</p></div>
-      </div>
-    </div>
-  </section>
+<div class="wrap hero">
+<h1>Все файлы <span>в одном месте</span></h1>
 
-  <section id="how">
-    <div class="wrap">
-      <h2>Как начать</h2>
-      <div class="grid">
-        <div class="card"><div class="num" style="background:var(--blue)">1</div><h3>Войдите в аккаунт</h3><p>Используйте аккаунт Google или создайте новый.</p></div>
-        <div class="card"><div class="num" style="background:var(--green)">2</div><h3>Загрузите файлы</h3><p>Перетащите документы и фото в окно браузера.</p></div>
-        <div class="card"><div class="num" style="background:var(--yellow)">3</div><h3>Поделитесь доступом</h3><p>Отправьте ссылку и выберите, кто может смотреть или редактировать.</p></div>
-      </div>
-    </div>
-  </section>
+<p>
+До 15 ГБ бесплатно. Открывайте документы,
+фото и презентации с телефона, планшета и компьютера.
+</p>
 
-  <section>
-    <div class="wrap">
-      <h2>Получите короткую инструкцию</h2>
-      <form id="lead-form">
-        <label for="segment">Кто вы?</label>
-        <select id="segment" name="segment" required>
-          <option value="">Выберите вариант</option>
-          <option value="student">Студент</option>
-          <option value="freelancer">Фрилансер или самозанятый</option>
-          <option value="business">Малый бизнес или команда</option>
-        </select>
-        <button type="submit" class="btn">Получить инструкцию</button>
-        <div id="thanks">Спасибо! Это учебный сайт: данные нигде не сохраняются.</div>
-      </form>
-    </div>
-  </section>
+<div class="actions">
+<a class="btn"
+href="https://drive.google.com"
+target="_blank"
+rel="noopener"
+data-track="click_try"
+data-location="hero">
+Попробовать бесплатно
+</a>
+
+<a class="btn ghost" href="#how">
+Как это работает
+</a>
+</div>
+</div>
+
+<section>
+<div class="wrap">
+<h2>Три причины хранить файлы в облаке</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Доступ с любого устройства</h3>
+<p>
+Начните работу на ноутбуке, продолжите на телефоне.
+Файл всегда под рукой.
+</p>
+</div>
+
+<div class="card">
+<h3>Совместная работа</h3>
+<p>
+Редактируйте документ вместе с другими
+и не пересылайте версии по почте.
+</p>
+</div>
+
+<div class="card">
+<h3>Надёжное хранение</h3>
+<p>
+Файлы не потеряются вместе с флешкой
+или сломанным ноутбуком.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="how">
+<div class="wrap">
+<h2>Как начать</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="num" style="background:var(--blue)">1</div>
+<h3>Войдите в аккаунт</h3>
+<p>Используйте аккаунт Google или создайте новый.</p>
+</div>
+
+<div class="card">
+<div class="num" style="background:var(--green)">2</div>
+<h3>Загрузите файлы</h3>
+<p>Перетащите документы и фото в окно браузера.</p>
+</div>
+
+<div class="card">
+<div class="num" style="background:var(--yellow)">3</div>
+<h3>Поделитесь доступом</h3>
+<p>
+Отправьте ссылку и выберите,
+кто может смотреть или редактировать.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>Получите короткую инструкцию</h2>
+
+<form id="lead-form">
+
+<label for="segment">Кто вы?</label>
+
+<select id="segment" name="segment" required>
+<option value="">Выберите вариант</option>
+<option value="student">Студент</option>
+<option value="freelancer">Фрилансер или самозанятый</option>
+<option value="business">Малый бизнес или команда</option>
+</select>
+
+<button type="submit" class="btn">
+Получить инструкцию
+</button>
+
+<div id="thanks">
+Спасибо! Это учебный сайт: данные нигде не сохраняются.
+</div>
+
+</form>
+</div>
+</section>
+
 </main>
 
 <footer>
-  <div class="wrap">
-    Учебный проект для курса по Performance-аналитике. Сайт не является официальным сайтом Google, название и описание продукта использованы в учебных целях.
-  </div>
+<div class="wrap">
+Учебный проект для курса по Performance-аналитике.
+Сайт не является официальным сайтом Google,
+название и описание продукта использованы в учебных целях.
+</div>
 </footer>
 
 <script>
-  var METRIKA_ID = 114267184;
 
-  // Единая функция отправки событий в обе системы
-  function track(name, params) {
-    params = params || {};
-    try { if (window.gtag) { gtag('event', name, params); } } catch (e) {}
-    try { if (window.ym) { ym(METRIKA_ID, 'reachGoal', name, params); } } catch (e) {}
-  }
+// ID Яндекс.Метрики
+var METRIKA_ID = 114267184;
 
-  // Клики по кнопкам «Попробовать»
-  document.querySelectorAll('[data-track]').forEach(function (el) {
-    el.addEventListener('click', function () {
-      track(el.getAttribute('data-track'), { location: el.getAttribute('data-location') });
-    });
-  });
+// Единая функция отправки событий
+function track(name, params) {
+params = params || {};
 
-  // Отправка формы
-  document.getElementById('lead-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var segment = document.getElementById('segment').value;
-    track('form_submit', { segment: segment });
-    document.getElementById('thanks').style.display = 'block';
-  });
+// Отправка события в Google Tag Manager
+window.dataLayer = window.dataLayer || [];
 
-  // Прокрутка страницы до 75%
-  var scrollSent = false;
-  window.addEventListener('scroll', function () {
-    if (scrollSent) { return; }
-    var h = document.documentElement;
-    var passed = (h.scrollTop + window.innerHeight) / h.scrollHeight;
-    if (passed >= 0.75) { scrollSent = true; track('scroll_75'); }
-  });
+window.dataLayer.push({
+event:name,
+...params
+});
 
-  // 60 секунд на сайте
-  setTimeout(function () { track('time_60s'); }, 60000);
+// Отправка цели в Яндекс.Метрику
+if (typeof window.ym === 'function') {
+ym(METRIKA_ID,'reachGoal',name,params);
+}
+}
+
+// 1. Клики по кнопкам «Попробовать»
+document.querySelectorAll('[data-track]').forEach(function(el) {
+
+el.addEventListener('click',function() {
+
+track(el.getAttribute('data-track'),{
+location:el.getAttribute('data-location')
+});
+
+});
+
+});
+
+// 2. Отправка формы
+document.getElementById('lead-form').addEventListener('submit',function(e) {
+
+e.preventDefault();
+
+var segment = document.getElementById('segment').value;
+
+track('form_submit',{
+segment:segment
+});
+
+document.getElementById('thanks').style.display='block';
+
+});
+
+// 3. Прокрутка страницы до 75%
+var scrollSent = false;
+
+window.addEventListener('scroll',function() {
+
+if (scrollSent) return;
+
+var h = document.documentElement;
+
+var passed =
+(h.scrollTop + window.innerHeight) / h.scrollHeight;
+
+if (passed >= 0.75) {
+
+scrollSent = true;
+
+track('scroll_75');
+
+}
+
+});
+
+// 4. 60 секунд на сайте
+setTimeout(function() {
+
+track('time_60s');
+
+},60000);
+
 </script>
 
 </body>
