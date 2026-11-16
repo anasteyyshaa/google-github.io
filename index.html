@@ -429,18 +429,28 @@ function track(name, params) {
   }
 }
 
+
 // 1. Клики по кнопкам «Попробовать»
 document.querySelectorAll('[data-track]').forEach(function(el) {
 
   el.addEventListener('click', function() {
 
-    track(el.getAttribute('data-track'), {
-      location:el.getAttribute('data-location')
+    var location = el.getAttribute('data-location');
+
+    // Событие нажатия кнопки
+    track('click_try', {
+      location: location
+    });
+
+    // Событие перехода в Google Диск
+    track('drive_click', {
+      location: location
     });
 
   });
 
 });
+
 
 // 2. Отправка формы
 document.getElementById('lead-form').addEventListener('submit', function(e) {
